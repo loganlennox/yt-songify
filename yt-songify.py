@@ -22,14 +22,14 @@ with youtube_dl.YoutubeDL(dl_options) as dl:
     filename = dl.extract_info(sys.argv[1], download = False)["id"] + ".mp3"
 
 metadata = {}
-metadata["title"] = str(input("Song Title: "))
+metadata["name"] = str(input("Song Name: "))
 metadata["artist"] = str(input("Artist Name: "))
 metadata["album"] = str(input("Album Name: "))
 metadata["genre"] = str(input("Genre: "))
 metadata["year"] = str(input("Year: "))
 
 audio = ID3(filename)
-audio.add(TIT2(encoding = 3, text = metadata["title"]))
+audio.add(TIT2(encoding = 3, text = metadata["name"]))
 audio.add(TPE2(encoding = 3, text = metadata["artist"]))
 audio.add(TPE1(encoding = 3, text = metadata["artist"]))
 audio.add(TALB(encoding = 3, text = metadata["album"]))
@@ -37,4 +37,4 @@ audio.add(TCON(encoding = 3, text = metadata["genre"]))
 audio.add(TDRC(encoding = 3, text = metadata["year"]))
 audio.save()
 
-os.rename(filename, "{} - {}.mp3".format(metadata["artist"], metadata["title"]))
+os.rename(filename, "{} - {}.mp3".format(metadata["artist"], metadata["name"]))
