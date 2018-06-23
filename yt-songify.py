@@ -7,8 +7,6 @@ from mutagen.mp3 import MP3
 from mutagen.id3 import ID3NoHeaderError
 from mutagen.id3 import ID3, TIT2, TALB, TPE2, TPE1, TCON, TDRC
 
-dl_url = sys.argv[1]
-
 dl_options = {
     "outtmpl": "%(id)s.%(ext)s",
     "format": "bestaudio/best",
@@ -20,8 +18,8 @@ dl_options = {
 }
 
 with youtube_dl.YoutubeDL(dl_options) as dl:
-    dl.download([dl_url])
-    filename = dl.extract_info(dl_url, download = False)["id"] + ".mp3"
+    dl.download([sys.argv[1]])
+    filename = dl.extract_info(sys.argv[1], download = False)["id"] + ".mp3"
 
 metadata = {}
 metadata["title"] = str(input("Song Title: "))
