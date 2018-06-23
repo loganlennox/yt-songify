@@ -23,16 +23,16 @@ with youtube_dl.YoutubeDL(dl_options) as dl:
 
 metadata = {}
 metadata["title"] = str(input("Song Title: "))
-metadata["album"] = str(input("Album Name: "))
 metadata["artist"] = str(input("Artist Name: "))
+metadata["album"] = str(input("Album Name: "))
 metadata["genre"] = str(input("Genre: "))
 metadata["year"] = str(input("Year: "))
 
 audio = ID3(filename)
 audio.add(TIT2(encoding = 3, text = metadata["title"]))
-audio.add(TALB(encoding = 3, text = metadata["album"]))
 audio.add(TPE2(encoding = 3, text = metadata["artist"]))
 audio.add(TPE1(encoding = 3, text = metadata["artist"]))
+audio.add(TALB(encoding = 3, text = metadata["album"]))
 audio.add(TCON(encoding = 3, text = metadata["genre"]))
 audio.add(TDRC(encoding = 3, text = metadata["year"]))
 audio.save()
