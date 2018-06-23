@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import sys
+import sys, os
 from subprocess import call
 import youtube_dl
 from mutagen.mp3 import MP3
@@ -36,3 +36,5 @@ audio.add(TALB(encoding = 3, text = metadata["album"]))
 audio.add(TCON(encoding = 3, text = metadata["genre"]))
 audio.add(TDRC(encoding = 3, text = metadata["year"]))
 audio.save()
+
+os.rename(filename, "{} - {}.mp3".format(metadata["artist"], metadata["title"]))
