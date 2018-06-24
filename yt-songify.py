@@ -5,7 +5,7 @@ from subprocess import call
 import youtube_dl
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3NoHeaderError
-from mutagen.id3 import ID3, TIT2, TALB, TPE2, TPE1, TCON, TDRC
+from mutagen.id3 import ID3, APIC, TIT2, TALB, TPE2, TPE1, TCON, TDRC
 
 dl_options = {
     "outtmpl": "%(id)s.%(ext)s",
@@ -35,6 +35,16 @@ audio.add(TPE1(encoding = 3, text = metadata["artist"]))
 audio.add(TALB(encoding = 3, text = metadata["album"]))
 audio.add(TCON(encoding = 3, text = metadata["genre"]))
 audio.add(TDRC(encoding = 3, text = metadata["year"]))
+
+with open("default-cover.png", "rb") as cover:
+    audio.add(APIC(
+        encoding = 3,
+        mime = "image/png",
+        type = 3,
+        desc = metadata["album"],
+        data = cover.read()
+    ))
+
 audio.save()
 
 os.rename(filename, "{} - {}.mp3".format(metadata["artist"], metadata["name"]))
