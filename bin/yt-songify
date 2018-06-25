@@ -36,7 +36,7 @@ audio.add(TALB(encoding = 3, text = metadata["album"]))
 audio.add(TCON(encoding = 3, text = metadata["genre"]))
 audio.add(TDRC(encoding = 3, text = metadata["year"]))
 
-with open("default-cover.png", "rb") as cover:
+with open("../assets/default-cover.png", "rb") as cover:
     audio.add(APIC(
         encoding = 3,
         mime = "image/png",
