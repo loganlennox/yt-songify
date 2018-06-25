@@ -8,6 +8,7 @@ setup(name = "yt-songify",
       author_email = "loganlennox@protonmail.com",
       license = "MIT",
       packages = ["yt-songify"],
+      scripts = ["bin/yt-songify"],
       include_package_data = True,
       install_requires = [
           "youtube-dl",
